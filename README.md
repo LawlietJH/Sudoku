@@ -323,11 +323,11 @@ Salida:
 True
 ```
 
-Si el Sudoku tiene una colisión o más, devolverá False, si le pasamos a la función como parametro degun=True, esta nos imprimirá en pantalla en donde ocurrió la primer colisión, veamos un ejemplo, utilizando el mismo sudoku anterior:
+Si el Sudoku tiene una colisión o más, devolverá False, si le pasamos a la función como parametro debug=True, esta nos imprimirá en pantalla que posición es donde ocurrió la primer colisión, veamos un ejemplo, utilizando el mismo sudoku anterior:
 
 ```py
 sudoku = [
-	 [4, 8, 7, 1, 5, 1, 2, 3, 6],  # Cambie el número 9 por 1 en esta fila.
+	 [4, 8, 7, 1, 5, 1, 2, 3, 6],  # Cambie el número 9 por el primer 1 en esta fila.
 	 [9, 5, 1, 2, 3, 6, 4, 8, 7],
 	 [2, 3, 6, 4, 8, 7, 9, 5, 1],
 	 [3, 7, 9, 5, 6, 4, 8, 1, 2],
