@@ -41,7 +41,14 @@ sudoku = [
 #=======================================================================
 
 # Mostrar un Sudoku
-def printSudoku(sudoku, X=-1, Y=-1, formato=0):
+def printSudoku(sudoku, XY=(0, 0), formato=0):
+	
+	if not type(XY) in [list, tuple]: raise TypeError('Debes pasar (X, Y) o [X, Y] como un solo parametro.')
+	X = XY[0]
+	Y = XY[1]
+	if X == 0 or Y == 0: raise TypeError('X o Y deben ser mayor a 0. Del 1 al 9.')
+	if X  > 9 or Y  > 9: raise TypeError('X o Y deben ser menor a 10. Del 1 al 9.')
+	X, Y = X-1, Y-1
 	
 	if formato == 1:
 		
@@ -62,11 +69,9 @@ def printSudoku(sudoku, X=-1, Y=-1, formato=0):
 			if j%3 == 0:
 				salida += '+' + ('-'*7 + '+')*3 + '\n'
 			for i in range(9):
-				if j == Y and i == X: salida += '*'
-				
 				if i == 0: salida += '| '
-				if i == 8: salida += str(sudoku[j][i]) + ' '
-				else: salida += str(sudoku[j][i]) + ' '
+				if j == Y and i == X: salida += '*'
+				salida += str(sudoku[j][i]) + ' '
 				if (i+1)%3 == 0: salida += '| '
 			
 			salida += '\n'
@@ -77,7 +82,7 @@ def printSudoku(sudoku, X=-1, Y=-1, formato=0):
 
 
 # Valida que el Sudoku sea Correcto.
-def validateSolution(sudoku):
+def validateSolution(sudoku, debug=False):
 	
 	for y in range(9):
 		for x in range(9):
@@ -104,9 +109,11 @@ def validateSolution(sudoku):
 			or (sudoku[y][x] in lineX)\
 			or (sudoku[y][x] in lineY):
 				
-				# ~ s  = 'Se repite el número '+str(sudoku[y][x])
-				# ~ s += ' en la posición ('+str(x)+', '+str(y)+')'
-				# ~ print(s)
+				if debug:
+					s  = 'Se repite el número '+str(sudoku[y][x])
+					s += ' en la posición ('+str(x+1)+', '+str(y+1)+')'
+					print(s)
+				
 				return False
 	
 	# ~ print('Es Correcto!')
@@ -120,7 +127,14 @@ def match(sudoku, match, debug=False):
 		for x in range(9):
 			if sudoku[y][x] == 0: continue
 			if not sudoku[y][x] == match[y][x]:
-				if debug: print(y, x)
+				# ~ if debug: print(x+1, y+1)
+				
+				if debug:
+					s  = 'No coincide el número '+str(sudoku[y][x])
+					s += ' en la posición ('+str(x+1)+', '+str(y+1)+'). '
+					s += 'Debería haber un '+str(match[y][x])+' ahí.'
+					print(s)
+				
 				return False
 	return True
 
@@ -386,7 +400,7 @@ if __name__ == '__main__':
 	# Cambiar a True para ver o False para no verlo.
 	if True:
 		
-		amount = 1000
+		amount = 100
 		sudokus = []
 		cont = 0
 		v = 0
@@ -492,5 +506,4 @@ if __name__ == '__main__':
 	
 	#===================================================================
 	
-
-
+	
