@@ -132,3 +132,10 @@ Sudoku: 30000
 
 etc...
 ```
+
+### Algoritmo para Validar Sudokus
+Contiene una función que permite validar por completo un Sudoku y verificar que esté completamente correcto.
+
+### Algoritmo para comparar 2 Sudokus
+Contiene una función que permite comparar 2 Sudokus y verificar si son identicos.
+Ademas este algoritmo permite utilizar un Sudoku incompleto y verificar con uno Terminado, si todos los numeros que tiene el incmpleto coinciden en la misma posición que el Completo, de esta forma, permite validar si un Sudoku por resolver pertenece a uno ya Resuelto y verificar los resultados de salida.
