@@ -43,12 +43,14 @@ sudoku = [
 # Mostrar un Sudoku
 def printSudoku(sudoku, XY=(0, 0), formato=0):
 	
-	if not type(XY) in [list, tuple]: raise TypeError('Debes pasar (X, Y) o [X, Y] como un solo parametro.')
+	if not type(XY) in [list, tuple]: raise TypeError('Debes pasar [X, Y] o (X, Y) como un solo parametro.')
 	X = XY[0]
 	Y = XY[1]
-	if X == 0 or Y == 0: raise TypeError('X o Y deben ser mayor a 0. Del 1 al 9.')
-	if X  > 9 or Y  > 9: raise TypeError('X o Y deben ser menor a 10. Del 1 al 9.')
+	if X == 0 or Y == 0: raise TypeError('X y Y deben ser mayor a 0. Del 1 al 9.')
+	if X  > 9 or Y  > 9: raise TypeError('X y Y deben ser menor a 10. Del 1 al 9.')
 	X, Y = X-1, Y-1
+	
+	salida = str(sudoku)
 	
 	if formato == 1:
 		
