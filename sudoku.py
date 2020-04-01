@@ -41,7 +41,12 @@ sudoku = [
 #=======================================================================
 
 # Mostrar un Sudoku
-def printSudoku(sudoku, XY=(0, 0), formato=0):
+def printSudoku(sudoku, XY=(-1, -1), formato=0):
+	
+	if not (type(sudoku) == list and len(sudoku) == 9):
+		raise TypeError(
+			'Los Parametros del Sudoku estan Mal\n'+''.join([str(_)+'\n' for _ in sudoku])
+		)
 	
 	if not type(XY) in [list, tuple]: raise TypeError('Debes pasar [X, Y] o (X, Y) como un solo parametro.')
 	X = XY[0]
@@ -289,7 +294,7 @@ def solveSudoku(sudoku):
 	posY = 0			# Puntero en posicion Y de la matriz
 	n = 0				# Numero para probar en casilla vacia.
 	back = False		# Indica si hubo un retroceso.
-	cont = 0
+	cont = 0			# Contador de Retrocesos, para medir la complejidad del Sudoku al terminar.
 	
 	while True:
 		
@@ -507,5 +512,4 @@ if __name__ == '__main__':
 		pause()
 	
 	#===================================================================
-	
 	
